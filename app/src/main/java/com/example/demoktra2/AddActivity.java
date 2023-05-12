@@ -98,6 +98,10 @@ public class AddActivity extends AppCompatActivity implements View.OnClickListen
         btUpdate=findViewById(R.id.btUpdate);
         btCancel=findViewById(R.id.btCancel);
         btSetAlarm = findViewById(R.id.btSetAlarm);
+
+        btSetAlarm.setEnabled(false);
+        btSetAlarm.setBackground(getResources().getDrawable(R.drawable.button_bg_4));
+
         sp2=findViewById(R.id.spCategory2);
         sp.setAdapter(new ArrayAdapter<String>(this,R.layout.item_spinner,getResources().getStringArray(R.array.category)));
         sp2.setAdapter(new ArrayAdapter<String>(this,R.layout.item_spinner,getResources().getStringArray(R.array.category2)));
@@ -137,6 +141,11 @@ public class AddActivity extends AppCompatActivity implements View.OnClickListen
         }
         if (view == eTime) {
             showTimePicker();
+            if (picker == null && eTime.getText().toString().isEmpty()) {
+                return;
+            }
+            btSetAlarm.setEnabled(true);
+            btSetAlarm.setBackground(getResources().getDrawable(R.drawable.button_bg));
         }
         if(view==btCancel){
             finish();
@@ -171,11 +180,17 @@ public class AddActivity extends AppCompatActivity implements View.OnClickListen
                 if (dataSnapshot.exists() && dataSnapshot.getChildrenCount() > 0) {
                     Object obj = dataSnapshot.getValue();
                     try {
-                        HashMap<String, Object> hashMap = (HashMap<String, Object>) obj;
-                        ArrayList<Map.Entry<String, Object>> list = new ArrayList<>(hashMap.entrySet());
-                        Map.Entry<String, Object> lastEntry = list.get(list.size() - 1);
+                        if (obj instanceof HashMap) {
+                            HashMap<String, Object> hashMap = (HashMap<String, Object>) obj;
+                            ArrayList<Map.Entry<String, Object>> list = new ArrayList<>(hashMap.entrySet());
+                            Map.Entry<String, Object> lastEntry = list.get(list.size() - 1);
 
-                        lastKey = Integer.parseInt(lastEntry.getKey());
+                            lastKey = Integer.parseInt(lastEntry.getKey());
+                        }
+                        else {
+                            ArrayList<Map<String, Object>> list = (ArrayList<Map<String, Object>>) obj;
+                            lastKey = Integer.parseInt(list.get(list.size() - 1).get("id").toString());
+                        }
                     } catch (Exception e) {
                         throw new RuntimeException(e);
                     }

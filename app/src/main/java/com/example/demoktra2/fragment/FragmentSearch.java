@@ -40,6 +40,8 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 
+import org.json.JSONObject;
+
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.HashMap;
@@ -178,19 +180,35 @@ public class FragmentSearch extends Fragment implements RecycleViewAdapter.ItemL
                     Object obj = task.getResult().getValue();
                     System.out.println("obj" + obj + " " + obj.getClass());
                     try {
-                        HashMap<String, Object> hashMap = (HashMap<String, Object>) obj;
-                        ArrayList<Map.Entry<String, Object>> list = new ArrayList<>(hashMap.entrySet());
-                        for(Map.Entry<String, Object> entry : list) {
-                            Object value = entry.getValue();
-                            HashMap<String, String> hashMap1 = (HashMap<String, String>) value;
+                        ArrayList<Object> list = new ArrayList<>();
+                        if (obj instanceof ArrayList) {
+                            list = (ArrayList<Object>) obj;
 
-                            String id = (String) hashMap1.get("id");
-                            String title = (String) hashMap1.get("title");
-                            String date = (String) hashMap1.get("date");
-                            String time = (String) hashMap1.get("time");
-                            String description = (String) hashMap1.get("description");
-                            String status = (String) hashMap1.get("status");
-                            String category = (String) hashMap1.get("category");
+                        }
+                        if (obj instanceof HashMap) {
+                            HashMap<String, Object> hashMap = (HashMap<String, Object>) obj;
+
+                            ArrayList<Object> arrayList = new ArrayList<>();
+                            for (Map.Entry<String, Object> entry : hashMap.entrySet()) {
+
+                                HashMap<String, Object> map = new HashMap<>();
+                                map.put(entry.getKey(), entry.getValue());
+                                arrayList.add(entry.getValue());
+                            }
+                            list = (ArrayList<Object>) arrayList;
+                        }
+
+                        for (Object entry : list) {
+                            if(entry == null)
+                                continue;
+                            JSONObject jsonObject = new JSONObject((Map) entry);
+                            String id = (String) jsonObject.get("id");
+                            String title = (String) jsonObject.get("title");
+                            String date = (String) jsonObject.get("date");
+                            String time = (String) jsonObject.get("time");
+                            String description = (String) jsonObject.get("description");
+                            String status = (String) jsonObject.get("status");
+                            String category = (String) jsonObject.get("category");
                             UserTask userTask = new UserTask(id, title, date, time, status, category, description);
                             userTaskList.add(userTask);
                         }

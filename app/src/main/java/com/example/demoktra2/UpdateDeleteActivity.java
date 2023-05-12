@@ -121,6 +121,10 @@ public class UpdateDeleteActivity extends AppCompatActivity implements View.OnCl
         btBack=findViewById(R.id.btBack);
         btRemove=findViewById(R.id.btRemove);
         btSetAlarm = findViewById(R.id.btSetAlarm);
+
+        btSetAlarm.setEnabled(false);
+        btSetAlarm.setBackground(getResources().getDrawable(R.drawable.button_bg_4));
+
         sp.setAdapter(new ArrayAdapter<String>(this,R.layout.item_spinner,getResources().getStringArray(R.array.category)));
         sp2.setAdapter(new ArrayAdapter<String>(this,R.layout.item_spinner,getResources().getStringArray(R.array.category2)));
 
@@ -160,6 +164,11 @@ public class UpdateDeleteActivity extends AppCompatActivity implements View.OnCl
         }
         if (view == eTime) {
             showTimePicker();
+            if (picker == null || eTime.getText().toString().isEmpty()) {
+                return;
+            }
+            btSetAlarm.setEnabled(true);
+            btSetAlarm.setBackground(getResources().getDrawable(R.drawable.button_bg));
         }
         if(view==btBack){
             finish();

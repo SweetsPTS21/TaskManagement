@@ -34,6 +34,8 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 
+import org.json.JSONObject;
+
 import java.io.Serializable;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -107,50 +109,43 @@ public class FragmentList extends Fragment implements RecycleViewAdapter.ItemLis
                     Object obj = task.getResult().getValue();
                     System.out.println("obj" + obj + " " + obj.getClass());
                     try {
-//                        HashMap<String, Object> hashMap = (HashMap<String, Object>) obj;
-//                        ArrayList<Map.Entry<String, Object>> list = new ArrayList<>(hashMap.entrySet());
+                        ArrayList<Object> list = new ArrayList<>();
                         if (obj instanceof ArrayList) {
-                            ArrayList<Map<String, Object>> list = (ArrayList<Map<String, Object>>) obj;
-                            for (Map<String, Object> entry : list) {
+                            list = (ArrayList<Object>) obj;
 
-                                String id = (String) entry.get("id");
-                                String title = (String) entry.get("title");
-                                String date = (String) entry.get("date");
-                                String time = (String) entry.get("time");
-                                String description = (String) entry.get("description");
-                                String status = (String) entry.get("status");
-                                String category = (String) entry.get("category");
-                                UserTask userTask = new UserTask(id, title, date, time, status, category, description);
-                                userTaskList.add(userTask);
-                            }
-                            adapter.setList(userTaskList);
-                            LinearLayoutManager manager = new LinearLayoutManager(getContext(), RecyclerView.VERTICAL, false);
-                            recyclerView.setLayoutManager(manager);
-                            recyclerView.setAdapter(adapter);
-                            adapter.setItemListener(FragmentList.this);
                         }
                         if (obj instanceof HashMap) {
                             HashMap<String, Object> hashMap = (HashMap<String, Object>) obj;
-                            ArrayList<Map.Entry<String, Object>> list = new ArrayList<>(hashMap.entrySet());
-                            for (Map.Entry<String, Object> entry : list) {
-                                HashMap<String, Object> map = (HashMap<String, Object>) entry.getValue();
 
-                                String id = (String) map.get("id");
-                                String title = (String) map.get("title");
-                                String date = (String) map.get("date");
-                                String time = (String) map.get("time");
-                                String description = (String) map.get("description");
-                                String status = (String) map.get("status");
-                                String category = (String) map.get("category");
-                                UserTask userTask = new UserTask(id, title, date, time, status, category, description);
-                                userTaskList.add(userTask);
+                            ArrayList<Object> arrayList = new ArrayList<>();
+                            for (Map.Entry<String, Object> entry : hashMap.entrySet()) {
+
+                                HashMap<String, Object> map = new HashMap<>();
+                                map.put(entry.getKey(), entry.getValue());
+                                arrayList.add(entry.getValue());
                             }
-                            adapter.setList(userTaskList);
-                            LinearLayoutManager manager = new LinearLayoutManager(getContext(), RecyclerView.VERTICAL, false);
-                            recyclerView.setLayoutManager(manager);
-                            recyclerView.setAdapter(adapter);
-                            adapter.setItemListener(FragmentList.this);
+                            list = (ArrayList<Object>) arrayList;
                         }
+
+                        for (Object entry : list) {
+                            if(entry == null)
+                                continue;
+                            JSONObject jsonObject = new JSONObject((Map) entry);
+                            String id = (String) jsonObject.get("id");
+                            String title = (String) jsonObject.get("title");
+                            String date = (String) jsonObject.get("date");
+                            String time = (String) jsonObject.get("time");
+                            String description = (String) jsonObject.get("description");
+                            String status = (String) jsonObject.get("status");
+                            String category = (String) jsonObject.get("category");
+                            UserTask userTask = new UserTask(id, title, date, time, status, category, description);
+                            userTaskList.add(userTask);
+                        }
+                        adapter.setList(userTaskList);
+                        LinearLayoutManager manager = new LinearLayoutManager(getContext(), RecyclerView.VERTICAL, false);
+                        recyclerView.setLayoutManager(manager);
+                        recyclerView.setAdapter(adapter);
+                        adapter.setItemListener(FragmentList.this);
 
                     } catch (Exception e) {
                         throw new RuntimeException(e);
