@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".AddActivity"
+    android:orientation="vertical">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="80dp"
+        android:orientation="vertical"
+        android:background="@color/app_theme">
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:text="Thêm công việc"
+            android:textSize="22dp"
+            android:layout_marginTop="10dp"
+            android:gravity="center"
+            android:textColor="@color/white"
+            android:textStyle="bold"/>
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginRight="5dp"
+        android:background="@drawable/button_bg_2">
+
+        <EditText
+            android:id="@+id/tvTitle"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:hint="Tên công việc"
+            android:paddingLeft="20dp"
+            android:background="@drawable/edit_text_background"/>
+
+        <EditText
+            android:id="@+id/tvTitle2"
+            android:layout_width="match_parent"
+            android:layout_marginTop="15dp"
+            android:layout_height="58dp"
+            android:paddingLeft="20dp"
+            android:hint="Nội dung"
+            android:background="@drawable/edit_text_background"/>
+
+        <EditText
+            android:editable="false"
+            android:id="@+id/tvDate"
+            android:layout_width="match_parent"
+            android:layout_height="55dp"
+            android:layout_marginTop="15dp"
+            android:hint="Ngày hoàn thành"
+            android:paddingLeft="20dp"
+            android:background="@drawable/edit_text_background"/>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+            <EditText
+                android:editable="false"
+                android:id="@+id/tvTime"
+                android:layout_width="250dp"
+                android:layout_height="60dp"
+                android:hint="Giờ đến hạn"
+                android:paddingLeft="15dp"
+                android:background="@drawable/edit_text_background"
+                android:layout_marginTop="15dp"/>
+            <androidx.appcompat.widget.AppCompatButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/btSetAlarm"
+                android:layout_weight="1"
+                android:layout_marginLeft="5dp"
+                android:layout_marginTop="13dp"
+                android:text="Set Ararm"
+                android:background="@drawable/button_bg"/>
+        </LinearLayout>
+
+
+        <Spinner
+            android:id="@+id/spCategory"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:layout_marginTop="15dp"
+            android:background="@drawable/edit_text_background"/>
+
+        <Spinner
+            android:id="@+id/spCategory2"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:layout_marginTop="15dp"
+            android:background="@drawable/edit_text_background"/>
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:weightSum="2"
+        android:layout_marginTop="20dp">
+        <androidx.appcompat.widget.AppCompatButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/btUpdate"
+            android:layout_weight="1"
+            android:layout_marginLeft="5dp"
+            android:text="Update"
+            android:background="@drawable/button_bg"/>
+        <androidx.appcompat.widget.AppCompatButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/btCancel"
+            android:layout_weight="1"
+            android:layout_marginLeft="5dp"
+            android:text="Cancel"
+            android:background="@drawable/button_bg_2"/>
+    </LinearLayout>
+</LinearLayout>

@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+   >
+
+    <SearchView
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:id="@+id/search"
+        android:layout_marginTop="15dp"
+        android:iconifiedByDefault="false"
+        android:queryHint="Nhập tên công việc"
+        android:background="@drawable/edit_text_background"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        />
+    <SearchView
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:id="@+id/search2"
+        android:layout_marginTop="15dp"
+        android:iconifiedByDefault="false"
+        android:queryHint="Nhập nội dung công việc"
+        android:background="@drawable/edit_text_background"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:weightSum="2"
+        android:layout_marginTop="15dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp">
+
+        <Spinner
+            android:layout_width="wrap_content"
+            android:layout_height="50dp"
+            android:id="@+id/spCategory"
+            android:layout_weight="1"
+            android:layout_gravity="center"
+            android:background="@drawable/edit_text_background"
+        />
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/btSearch"
+            android:layout_weight="1"
+            android:text="Search"
+            android:layout_marginLeft="20dp"
+            android:background="@drawable/button_bg"
+        />
+    </LinearLayout>
+<!--    <TextView-->
+<!--        android:id="@+id/tvTong"-->
+<!--        android:textColor="@color/yellow"-->
+<!--        android:text="Tong:"-->
+<!--        android:layout_marginLeft="20dp"-->
+<!--        android:textSize="15dp"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        />-->
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recycleView"
+        android:layout_marginTop="10dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"/>
+<!--    <TextView-->
+<!--        android:id="@+id/tvTK1"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="20dp"-->
+<!--        android:layout_marginTop="30dp"-->
+<!--        android:layout_marginLeft="10dp"-->
+<!--        android:layout_marginRight="10dp">-->
+<!--    </TextView>-->
+<!--    <TextView-->
+<!--        android:id="@+id/tvTK2"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="20dp"-->
+<!--        android:layout_marginLeft="10dp"-->
+<!--        android:layout_marginRight="10dp">-->
+<!--    </TextView>-->
+<!--    <TextView-->
+<!--        android:id="@+id/tvTK3"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="20dp"-->
+<!--        android:layout_marginLeft="10dp"-->
+<!--        android:layout_marginRight="10dp">-->
+<!--    </TextView>-->
+
+</LinearLayout>

@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "990707659509",
+    "project_id": "task-management-386307",
+    "storage_bucket": "task-management-386307.appspot.com",
+    "firebase_url": "https://task-management-386307-default-rtdb.asia-southeast1.firebasedatabase.app/"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:990707659509:android:eda7f4bdd5933e0a6f8bbc",
+        "android_client_info": {
+          "package_name": "com.example.demoktra2"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "990707659509-ttk2phdp9d2550036nl6cqmv9vekf7eg.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAc9dvgUQ-xzPf0J9cVvXBiuRGUkT9wySE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "990707659509-ttk2phdp9d2550036nl6cqmv9vekf7eg.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
