@@ -61,7 +61,6 @@
             android:layout_height="wrap_content"
             android:orientation="horizontal">
             <EditText
-                android:editable="false"
                 android:id="@+id/tvTime"
                 android:layout_width="250dp"
                 android:layout_height="60dp"

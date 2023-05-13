@@ -162,6 +162,8 @@ public class UpdateDeleteActivity extends AppCompatActivity implements View.OnCl
             },year,month,day);
             dialog.show();
         }
+
+
         if (view == eTime) {
             showTimePicker();
             if (picker == null || eTime.getText().toString().isEmpty()) {
