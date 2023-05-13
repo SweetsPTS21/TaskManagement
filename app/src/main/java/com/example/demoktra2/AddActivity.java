@@ -157,7 +157,7 @@ public class AddActivity extends AppCompatActivity implements View.OnClickListen
             String time = eTime.getText().toString();
             String status = sp.getSelectedItem().toString();
             String category =sp2.getSelectedItem().toString();
-            if(!title.isEmpty() && !description.isEmpty()){
+            if(!title.isEmpty() && !description.isEmpty() && !date.isEmpty()){
                 UserTask userTask = new UserTask(title, date, time, status, category, description);
                 addTask(userId, userTask);
                 userTaskSet = userTask;

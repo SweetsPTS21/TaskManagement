@@ -181,7 +181,7 @@ public class UpdateDeleteActivity extends AppCompatActivity implements View.OnCl
             String category =sp2.getSelectedItem().toString();
             String time = eTime.getText().toString();
 
-            if(!title.isEmpty() && !description.isEmpty()){
+            if(!title.isEmpty() && !description.isEmpty() && !date.isEmpty()){
                 UserTask newUserTask = new UserTask(userTask.getId(),title, date, time, status, category, description);
                 updateTask(userId, newUserTask);
                 finish();
